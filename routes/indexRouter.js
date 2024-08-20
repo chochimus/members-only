@@ -1,9 +1,10 @@
 const { Router } = require("express");
 const indexController = require("../controllers/indexController");
 const indexRouter = Router();
+const { protectRoute } = require("../config/passport");
 
-indexRouter.get("/", checkAuthentication, indexController.entryView);
-indexRouter.get("/home-page", checkAuthentication);
+indexRouter.get("/", indexController.handleRootGet);
+indexRouter.get("/home-page");
 module.exports = indexRouter;
 
 // if logged in redirect to home, otherwise render root with links to log-in or sign-up

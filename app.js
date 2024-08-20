@@ -1,11 +1,13 @@
 const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
+const path = require("node:path");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
 const indexRouter = require("./routes/indexRouter");
 const app = express();
 const pool = require("./db/pool");
+const authRouter = require("./routes/authRoutes");
 const pgSession = require("connect-pg-simple")(session);
 
 app.set("views", path.join(__dirname, "views"));
@@ -25,7 +27,8 @@ app.use(
 );
 app.use(passport.session());
 
-app.get("/", indexRouter);
+app.use("/", indexRouter);
+app.use("/", authRouter);
 
 app.use((err, req, res, next) => {
   console.error(err);

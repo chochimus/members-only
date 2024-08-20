@@ -1,6 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const pool = require("./db/pool");
+const pool = require("../db/pool");
 const bcrypt = require("bcryptjs");
 
 passport.use(
@@ -42,3 +42,15 @@ passport.deserializeUser(async (id, done) => {
     done(err);
   }
 });
+
+function protectRoute(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/login?next=" + req.url);
+}
+
+module.exports = {
+  passport,
+  protectRoute,
+};
