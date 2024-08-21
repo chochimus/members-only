@@ -47,7 +47,7 @@ function protectRoute(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect("/login?next=" + req.url);
+  res.redirect("/log-in?next=" + req.url);
 }
 
 module.exports = {
