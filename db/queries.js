@@ -5,3 +5,7 @@ async function insertUser({ username, password }) {
   const values = [username, password];
   await pool.query(query, values);
 }
+
+module.exports = {
+  insertUser,
+};

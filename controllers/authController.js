@@ -26,7 +26,7 @@ const signupPost = async (req, res, next) => {
   } catch (err) {
     // Check if the error is a unique constraint violation
     if (err.code === "23505") {
-      res.render("signup", {
+      res.render("sign-up", {
         error: "Username already taken. Please choose another one.",
       });
     } else {
