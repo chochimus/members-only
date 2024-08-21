@@ -8,32 +8,51 @@
   <body>
     <h1>Sign Up</h1>
     <form action="" method="POST">
-      <% if (locals.errors) { %> <% errors.forEach(error => { %> <% if
-      (error.path === 'username') { %> <%= error.msg %> <% } %> <% }); %> <% }
-      %>
-      <label>
-        Username:
-        <input
-          id="username"
-          name="username"
-          placeholder="username"
-          type="text"
-        />
-      </label>
-      <% if (locals.errors) { %> <% errors.forEach(error => { %> <% if
-      (error.path === 'password') { %> <%= error.msg %> <% } %> <% }); %> <% }
-      %>
-      <label>
-        Password:
-        <input id="password" name="password" type="password" />
-      </label>
-      <% if (locals.errors) { %> <% errors.forEach(error => { %> <% if
-      (error.path === 'confirm-password') { %> <%= error.msg %> <% } %> <% });
-      %> <% } %>
-      <label>
-        Confirm password:
-        <input id="confirm-password" name="confirm-password" type="password" />
-      </label>
+      <div class="username-input">
+        <ul>
+          <% if (locals.errors) { %> <% errors.forEach(error => { %> <% if
+          (error.path === 'username') { %>
+          <li><%= error.msg %></li>
+          <% } %> <% }); %> <% } %>
+        </ul>
+        <label>
+          Username:
+          <input
+            id="username"
+            name="username"
+            placeholder="username"
+            type="text"
+          />
+        </label>
+      </div>
+      <div class="password-input">
+        <ul>
+          <% if (locals.errors) { %> <% errors.forEach(error => { %> <% if
+          (error.path === 'password') { %>
+          <li><%= error.msg %></li>
+          <% } %> <% }); %> <% } %>
+        </ul>
+        <label>
+          Password:
+          <input id="password" name="password" type="password" />
+        </label>
+      </div>
+      <div class="confirm-password-input">
+        <ul>
+          <% if (locals.errors) { %> <% errors.forEach(error => { %> <% if
+          (error.path === 'confirm-password') { %>
+          <li><%= error.msg %></li>
+          <% } %> <% }); %> <% } %>
+        </ul>
+        <label>
+          Confirm password:
+          <input
+            id="confirm-password"
+            name="confirm-password"
+            type="password"
+          />
+        </label>
+      </div>
       <button>Sign Up</button>
     </form>
   </body>

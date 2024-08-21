@@ -4,7 +4,7 @@ const indexRouter = Router();
 const { protectRoute } = require("../config/passport");
 
 indexRouter.get("/", indexController.handleRootGet);
-indexRouter.get("/home-page");
+indexRouter.get("/homepage", indexController.homepageViewGet);
 module.exports = indexRouter;
 
 // if logged in redirect to home, otherwise render root with links to log-in or sign-up

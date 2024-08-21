@@ -1,6 +1,7 @@
 const { body, validationResult } = require("express-validator");
 const db = require("../db/queries");
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 
 const signupGet = (req, res) => {
   res.render("sign-up");
@@ -56,12 +57,17 @@ const signupPost = [
       await db.insertUser({ username, password: hashedPassword });
 
       // Redirect or respond with success
-      res.redirect("/login");
+      res.redirect("/log-in");
     } catch (err) {
       // Check if the error is a unique constraint violation
       if (err.code === "23505") {
         res.render("sign-up", {
-          error: "Username already taken. Please choose another one.",
+          errors: [
+            {
+              msg: "Username already taken. Please choose another one.",
+              path: "username",
+            },
+          ],
         });
       } else {
         // Handle other errors
@@ -71,7 +77,20 @@ const signupPost = [
   },
 ];
 
+const loginGet = (req, res) => {
+  res.render("log-in");
+};
+
+const loginPost = (req, res, next) => {
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/log-in",
+  });
+};
+
 module.exports = {
   signupGet,
   signupPost,
+  loginGet,
+  loginPost,
 };

@@ -9,6 +9,11 @@ const handleRootGet = (req, res) => {
   }
 };
 
+const homepageViewGet = (req, res) => {
+  res.render("homepage");
+};
+
 module.exports = {
   handleRootGet,
+  homepageViewGet,
 };
