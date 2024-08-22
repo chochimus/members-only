@@ -9,8 +9,9 @@ const handleRootGet = (req, res) => {
   }
 };
 
-const homepageViewGet = (req, res) => {
-  res.render("homepage");
+const homepageViewGet = async (req, res) => {
+  const messages = await db.getAllMessages();
+  res.render("homepage" + messages);
 };
 
 module.exports = {

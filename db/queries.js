@@ -6,6 +6,13 @@ async function insertUser({ username, password }) {
   await pool.query(query, values);
 }
 
+async function getAllMessages() {
+  const query = `SELECT * FROM messages`;
+  const { rows } = await pool.query(query);
+  return rows;
+}
+
 module.exports = {
   insertUser,
+  getAllMessages,
 };

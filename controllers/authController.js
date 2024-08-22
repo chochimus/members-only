@@ -82,13 +82,23 @@ const loginGet = (req, res) => {
 };
 
 const loginPost = passport.authenticate("local", {
-  successRedirect: "/",
   failureRedirect: "/log-in",
+  successRedirect: "/",
 });
+
+const logoutGet = (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+};
 
 module.exports = {
   signupGet,
   signupPost,
   loginGet,
   loginPost,
+  logoutGet,
 };
