@@ -25,7 +25,9 @@ app.use(
     saveUninitialized: false,
   })
 );
+
 app.use(passport.session());
+require("./config/passport");
 
 app.use("/", indexRouter);
 app.use("/", authRouter);
