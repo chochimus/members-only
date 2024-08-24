@@ -1,0 +1,21 @@
+<% if(locals.messages) { %>
+<ul>
+  <% messages.forEach(message => { %>
+  <li>
+    <div>
+      <span><%= message.title %></span>
+      <p><%= message.text %></p>
+      <div>
+        <% if(locals.user.membership_statusid > 0) { %>
+        <span><%=message.author%></span>
+        <span><%=message.timestamp%></span>
+        <%}%>
+        <!--TODO: add date/username for members-->
+      </div>
+    </div>
+  </li>
+  <%});%>
+</ul>
+<% } else { %>
+<span>No messages</span>
+<%}; %>

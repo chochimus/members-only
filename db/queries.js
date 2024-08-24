@@ -7,7 +7,9 @@ async function insertUser({ username, password }) {
 }
 
 async function getAllMessages() {
-  const query = `SELECT * FROM messages`;
+  const query = `SELECT users.username AS author, title, text, timestamp
+    FROM messages
+    LEFT JOIN users ON messages.userid = users.userid`;
   const { rows } = await pool.query(query);
   return rows;
 }
