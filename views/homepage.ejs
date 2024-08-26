@@ -3,11 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/public/styles.css" />
     <title>Document</title>
   </head>
   <body>
     <h1>this is the homepage</h1>
+    <button id="createMessageButton">Create new message</button>
     <a href="/log-out">Log out</a>
     <div><%- include("partials/messages.ejs") %></div>
+    <%- include("partials/dialog.ejs") %>
   </body>
 </html>
