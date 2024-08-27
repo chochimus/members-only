@@ -9,6 +9,8 @@
   </head>
   <body>
     <h1>this is the homepage</h1>
+    <% if (locals.errors) { %> <% errors.forEach(error => { %> <% if (error.path
+    === 'username') { %> <%= error.msg %> <% } %> <% }); %> <% } %>
     <dialog id="messageDialog">
       <form action="/create-message" method="POST">
         <label>

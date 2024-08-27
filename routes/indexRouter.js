@@ -10,6 +10,12 @@ indexRouter.post(
   protectRoute,
   indexController.createMessagePost
 );
+indexRouter.post(
+  "/:messageid/delete",
+  protectRoute,
+  indexController.deleteMessagePost
+);
+
 //TODO complete /become-member route
 module.exports = indexRouter;
 

@@ -74,8 +74,19 @@ const createMessagePost = [
   },
 ];
 
+const deleteMessagePost = async (req, res, next) => {
+  const { messageid } = req.params;
+  try {
+    await db.deleteMessageById({ messageid });
+    res.redirect("/homepage");
+  } catch (err) {
+    return next(err);
+  }
+};
+
 module.exports = {
   handleRootGet,
   homepageViewGet,
   createMessagePost,
+  deleteMessagePost,
 };

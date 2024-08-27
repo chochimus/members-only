@@ -7,7 +7,7 @@ async function insertUser({ username, password }) {
 }
 
 async function getAllMessages() {
-  const query = `SELECT users.username AS author, title, text, timestamp
+  const query = `SELECT messageid, users.username AS author, title, text, timestamp
     FROM messages
     LEFT JOIN users ON messages.userid = users.userid
     ORDER BY timestamp DESC`;
@@ -22,8 +22,15 @@ async function createMessage({ userid, title, content }) {
   await pool.query(query, values);
 }
 
+async function deleteMessageById({ messageid }) {
+  const query = `DELETE FROM messages WHERE messageid = $1`;
+  const values = [messageid];
+  await pool.query(query, values);
+}
+
 module.exports = {
   insertUser,
   getAllMessages,
   createMessage,
+  deleteMessageById,
 };
