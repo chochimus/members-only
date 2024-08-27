@@ -70,7 +70,6 @@ const signupPost = [
           ],
         });
       } else {
-        // Handle other errors
         next(err);
       }
     }

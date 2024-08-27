@@ -24,6 +24,8 @@ const homepageViewGet = async (req, res) => {
   });
 };
 
+//TODO complete create-message get
+
 module.exports = {
   handleRootGet,
   homepageViewGet,

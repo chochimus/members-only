@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/public/styles.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
     <title>Document</title>
   </head>
   <body>
@@ -11,6 +12,5 @@
     <button id="createMessageButton">Create new message</button>
     <a href="/log-out">Log out</a>
     <div><%- include("partials/messages.ejs") %></div>
-    <%- include("partials/dialog.ejs") %>
   </body>
 </html>
