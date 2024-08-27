@@ -9,6 +9,24 @@
   </head>
   <body>
     <h1>this is the homepage</h1>
+    <dialog id="messageDialog">
+      <form action="/create-message" method="POST">
+        <label>
+          Title:
+          <input type="text" id="messageTitle" name="messageTitle" required />
+        </label>
+        <label>
+          Message:
+          <textarea
+            id="messageContent"
+            name="messageContent"
+            required
+          ></textarea>
+        </label>
+        <button type="submit" id="submitButton">submit</button>
+        <button type="button" id="cancelButton">cancel</button>
+      </form>
+    </dialog>
     <button id="createMessageButton">Create new message</button>
     <a href="/log-out">Log out</a>
     <div><%- include("partials/messages.ejs") %></div>

@@ -5,7 +5,11 @@ const { protectRoute } = require("../config/passport");
 
 indexRouter.get("/", indexController.handleRootGet);
 indexRouter.get("/homepage", protectRoute, indexController.homepageViewGet);
-//TODO complete /create-message route
+indexRouter.post(
+  "/create-message",
+  protectRoute,
+  indexController.createMessagePost
+);
 //TODO complete /become-member route
 module.exports = indexRouter;
 

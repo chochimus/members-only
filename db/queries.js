@@ -16,7 +16,14 @@ async function getAllMessages() {
   return rows;
 }
 
+async function createMessage({ userid, title, content }) {
+  const query = `INSERT INTO messages (userid, title, text) VALUES ($1, $2, $3)`;
+  const values = [userid, title, content];
+  await pool.query(query, values);
+}
+
 module.exports = {
   insertUser,
   getAllMessages,
+  createMessage,
 };
