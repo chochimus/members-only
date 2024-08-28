@@ -3,13 +3,13 @@
   <% messages.forEach(message => { %>
   <li>
     <div>
-      <span><%= message.title %></span>
+      <span><%= unescapeHTML(message.title) %></span>
       <% if(locals.user.membership_statusid == 2) { %>
       <form action="/<%= message.messageid %>/delete" method="POST">
         <button type="submit">Delete Message</button>
       </form>
       <% } %>
-      <p><%= message.text %></p>
+      <p><%= unescapeHTML(message.text) %></p>
       <div>
         <% if(locals.user.membership_statusid > 0) { %>
         <span><%=message.author%></span>

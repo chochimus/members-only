@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Join</h1>
+    <% if (locals.errors) { %> <% errors.forEach(error => {%> <%=error.msg %> <%
+    }) %> <% } %> <% if(user.membership_statusid === 0){ %>
+    <form action="/members-only" method="POST">
+      <input
+        type="password"
+        id="memberPassword"
+        name="memberPassword"
+        required
+      />
+      <button type="submit">submit</button>
+    </form>
+    <% } else { %>
+    <p>You're already a member <%= user.username %></p>
+    <% } %>
+    <a href="/homepage">homepage</a>
+  </body>
+</html>

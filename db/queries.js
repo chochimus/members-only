@@ -28,9 +28,24 @@ async function deleteMessageById({ messageid }) {
   await pool.query(query, values);
 }
 
+async function getMembershipStatus({ userid }) {
+  const query = `SELECT membership_statusid FROM users WHERE userid = $1`;
+  const values = [userid];
+  const { rows } = await pool.query(query, values);
+  return rows[0].membership_statusid;
+}
+
+async function updateStatus({ userid }) {
+  const query = `UPDATE users SET membership_statusid = 1 WHERE userid = $1`;
+  const values = [userid];
+  await pool.query(query, values);
+}
+
 module.exports = {
   insertUser,
   getAllMessages,
   createMessage,
   deleteMessageById,
+  getMembershipStatus,
+  updateStatus,
 };

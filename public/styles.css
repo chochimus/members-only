@@ -1,3 +1,71 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+:root {
+  --backgroundGradient: linear-gradient(
+    135deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(20, 19, 97, 1) 26%,
+    rgba(10, 6, 162, 1) 55%,
+    rgba(4, 124, 197, 1) 72%,
+    rgba(2, 159, 220, 1) 83%,
+    rgba(0, 189, 255, 1) 100%
+  );
+  --mainWindowBg: rgb(34, 34, 34);
+  --mainWindowTop: rgb(184, 184, 184);
+  --mainTextColor: rgb(40, 179, 40);
+  --mainTextHover: rgb(106, 241, 106);
+  --mainTextAfter: ;
+}
+
+html,
+body {
+  height: 100vh;
+}
+body {
+  background: var(--backgroundGradient);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.window {
+  background-color: var(--mainWindowBg);
+  width: 20rem;
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.6rem;
+  justify-content: space-between;
+}
+
+.window-top {
+  background-color: var(--mainWindowTop);
+  height: 1.4rem;
+  display: flex;
+  border-radius: 0.6rem 0.6rem 0rem 0rem;
+}
+
+.entry-links {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--mainTextHover);
+}
+
+.entry-links a {
+  color: var(--mainTextColor);
+  font-size: 2rem;
+}
+
 #messageDialog {
   display: none;
 }

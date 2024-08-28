@@ -16,7 +16,21 @@ indexRouter.post(
   indexController.deleteMessagePost
 );
 
-//TODO complete /become-member route
+function checkIfMember(req, res, next) {
+  if (req.user.membership_statusid > 0) {
+    return res.redirect("/homepage");
+  }
+  next();
+}
+
+indexRouter.get("/members-only", protectRoute, indexController.joinMembersGet);
+indexRouter.post(
+  "/members-only",
+  protectRoute,
+  checkIfMember,
+  indexController.joinMembersPost
+);
+
 module.exports = indexRouter;
 
 // if logged in redirect to home, otherwise render root with links to log-in or sign-up

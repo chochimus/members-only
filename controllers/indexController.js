@@ -63,7 +63,7 @@ const createMessagePost = [
     }
     try {
       await db.createMessage({
-        userid: req.userid,
+        userid: req.user.userid,
         title: req.body.messageTitle,
         content: req.body.messageContent,
       });
@@ -84,9 +84,56 @@ const deleteMessagePost = async (req, res, next) => {
   }
 };
 
+const joinMembersGet = async (req, res, next) => {
+  res.render("become-member", {
+    user: req.user,
+  });
+};
+
+const joinMembersValidate = [body("memberPassword").escape()];
+const joinMembersPost = [
+  joinMembersValidate,
+  async (req, res, next) => {
+    const errors = await validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("become-member", {
+        user: req.user,
+        errors: errors.array(),
+      });
+    }
+
+    const { memberPassword } = req.body;
+    const { membership_statusid: currentStatus, userid } = req.user;
+    console.log(memberPassword, currentStatus);
+    try {
+      if (memberPassword === process.env.MEMBERS_CODE) {
+        const statusInDb = await db.getMembershipStatus({ userid });
+        if (statusInDb === currentStatus) {
+          await db.updateStatus({ userid });
+          res.redirect("/homepage");
+        } else {
+          res.render("become-member", {
+            user: req.user,
+            errors: [{ msg: "your status has already been updated" }],
+          });
+        }
+      } else {
+        res.render("become-member", {
+          user: req.user,
+          errors: [{ msg: "incorrect passcode" }],
+        });
+      }
+    } catch (err) {
+      return next(err);
+    }
+  },
+];
+
 module.exports = {
   handleRootGet,
   homepageViewGet,
   createMessagePost,
   deleteMessagePost,
+  joinMembersGet,
+  joinMembersPost,
 };

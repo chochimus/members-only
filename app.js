@@ -9,11 +9,12 @@ const app = express();
 const pool = require("./db/pool");
 const authRouter = require("./routes/authRoutes");
 const pgSession = require("connect-pg-simple")(session);
+const unescapeHTML = require("./utils/unescape");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
@@ -29,6 +30,11 @@ app.use(
 
 app.use(passport.session());
 require("./config/passport");
+
+app.use((req, res, next) => {
+  res.locals.unescapeHTML = unescapeHTML;
+  next();
+});
 
 app.use("/", indexRouter);
 app.use("/", authRouter);
