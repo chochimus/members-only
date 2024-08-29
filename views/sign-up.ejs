@@ -7,54 +7,56 @@
     <title></title>
   </head>
   <body>
-    <h1>Sign Up</h1>
-    <form action="" method="POST">
-      <div class="username-input">
-        <ul>
-          <% if (locals.errors) { %> <% errors.forEach(error => { %> <% if
-          (error.path === 'username') { %>
-          <li><%= error.msg %></li>
-          <% } %> <% }); %> <% } %>
-        </ul>
-        <label>
-          Username:
+    <div class="big-window">
+      <%-include("partials/windowtop") %>
+      <form class="sign-up-form" action="/sign-up" method="POST">
+        <div class="username-input">
+          <label for="username"> >>Username</label>
           <input
             id="username"
             name="username"
             placeholder="username"
             type="text"
           />
-        </label>
-      </div>
-      <div class="password-input">
-        <ul>
-          <% if (locals.errors) { %> <% errors.forEach(error => { %> <% if
-          (error.path === 'password') { %>
-          <li><%= error.msg %></li>
-          <% } %> <% }); %> <% } %>
-        </ul>
-        <label>
-          Password:
+          <span class="error-msg">
+            <ul>
+              <% if (locals.errors) { %> <% errors.forEach(error => { %> <% if
+              (error.path === 'username') { %>
+              <li>>><%= error.msg %></li>
+              <% } %> <% }); %> <% } %>
+            </ul>
+          </span>
+        </div>
+        <div class="password-input">
+          <label for="password"> >>Password</label>
           <input id="password" name="password" type="password" />
-        </label>
-      </div>
-      <div class="confirm-password-input">
-        <ul>
-          <% if (locals.errors) { %> <% errors.forEach(error => { %> <% if
-          (error.path === 'confirm-password') { %>
-          <li><%= error.msg %></li>
-          <% } %> <% }); %> <% } %>
-        </ul>
-        <label>
-          Confirm password:
+          <span class="error-msg">
+            <ul>
+              <% if (locals.errors) { %> <% errors.forEach(error => { %> <% if
+              (error.path === 'password') { %>
+              <li>>><%= error.msg %></li>
+              <% } %> <% }); %> <% } %>
+            </ul>
+          </span>
+        </div>
+        <div class="confirm-password-input">
+          <label for="confirm-password"> >>Confirm password</label>
           <input
             id="confirm-password"
             name="confirm-password"
             type="password"
           />
-        </label>
-      </div>
-      <button>Sign Up</button>
-    </form>
+          <span class="error-msg">
+            <ul>
+              <% if (locals.errors) { %> <% errors.forEach(error => { %> <% if
+              (error.path === 'confirm-password') { %>
+              <li>>><%= error.msg %></li>
+              <% } %> <% }); %> <% } %>
+            </ul>
+          </span>
+        </div>
+        <span class="sign-up-button">>><button>Sign Up</button></span>
+      </form>
+    </div>
   </body>
 </html>

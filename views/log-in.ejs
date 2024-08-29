@@ -10,8 +10,10 @@
     <div class="window">
       <%- include("partials/windowtop") %>
       <div class="window-content">
-        <% if (locals.errors) { %>
-        <span class="error-msg"><%= errors.error %></span> <% } %>
+        <span class="error-msg">
+          <% if (locals.errors && locals.errors.error) { %> >><%= errors.error
+          %> <% } %>
+        </span>
         <div class="login-form">
           <form action="/log-in" method="POST">
             <label for="username">Username</label>
@@ -33,7 +35,7 @@
                 type="password"
               />
             </span>
-            <span>
+            <span class="log-in-button">
               >>
               <button>Log in</button>
             </span>

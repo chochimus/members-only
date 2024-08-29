@@ -7,21 +7,34 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Join</h1>
-    <% if (locals.errors) { %> <% errors.forEach(error => {%> <%=error.msg %> <%
-    }) %> <% } %> <% if(user.membership_statusid === 0){ %>
-    <form action="/members-only" method="POST">
-      <input
-        type="password"
-        id="memberPassword"
-        name="memberPassword"
-        required
-      />
-      <button type="submit">submit</button>
-    </form>
-    <% } else { %>
-    <p>You're already a member <%= user.username %></p>
-    <% } %>
-    <a href="/homepage">homepage</a>
+    <div class="window">
+      <%-include("partials/windowtop")%>
+      <div class="members-join-links">
+        <a href="/homepage">>>homepage</a>
+        <a href="/log-out">>>logout</a>
+      </div>
+      <% if(user.membership_statusid === 0){ %>
+      <form class="members-join-form" action="/members-only" method="POST">
+        <label for="memberPassword">>>Secret code</label>
+        <input
+          type="password"
+          id="memberPassword"
+          name="memberPassword"
+          required
+        />
+        <span class="error-msg members-join-error">
+          <% if (locals.errors) { %> <% errors.forEach(error => {%>
+          >><%=error.msg %> <% }) %> <% } %>
+        </span>
+        <span class="members-join-button"
+          >>><button type="submit">submit</button></span
+        >
+      </form>
+      <% } else { %>
+      <p class="already-member-msg">
+        >>You're already a member <%= user.username %>
+      </p>
+      <% } %>
+    </div>
   </body>
 </html>

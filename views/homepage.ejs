@@ -8,30 +8,42 @@
     <title>Document</title>
   </head>
   <body>
-    <a href="/members-only">Become a member!</a>
-    <a href="/log-out">Log out</a>
-    <h1>this is the homepage</h1>
-    <% if (locals.errors) { %> <% errors.forEach(error => {%> <%=error.msg %> <%
-    }) %> <% } %>
-    <button id="createMessageButton">Create new message</button>
-    <dialog id="messageDialog">
-      <form action="/create-message" method="POST">
-        <label>
-          Title:
+    <div class="big-window">
+      <%- include("partials/windowtop") %>
+      <div class="homepage-links">
+        <a href="/members-only">>>Become a member!</a>
+        <a href="/log-out">>>Log out</a>
+      </div>
+      <span class="error-msg">
+        <% if (locals.errors) { %> <% errors.forEach(error => {%> <%=error.msg
+        %> <% }) %> <% } %>
+      </span>
+      <span class="create-message-button">
+        >>
+        <button id="createMessageButton">New message</button>
+      </span>
+      <dialog id="messageDialog">
+        <%- include("partials/windowtop") %>
+        <form
+          class="create-message-form"
+          action="/create-message"
+          method="POST"
+        >
+          <label for="messageTitle"> >>Title</label>
           <input type="text" id="messageTitle" name="messageTitle" required />
-        </label>
-        <label>
-          Message:
+          <label for="messageContent"> >>Message</label>
           <textarea
             id="messageContent"
             name="messageContent"
             required
           ></textarea>
-        </label>
-        <button type="submit" id="submitButton">submit</button>
-        <button type="button" id="cancelButton">cancel</button>
-      </form>
-    </dialog>
-    <div><%- include("partials/messages.ejs") %></div>
+          <div class="create-message-buttons">
+            <button type="submit" id="submitButton">submit</button>
+            <button type="button" id="cancelButton">cancel</button>
+          </div>
+        </form>
+      </dialog>
+      <div><%- include("partials/messages.ejs") %></div>
+    </div>
   </body>
 </html>

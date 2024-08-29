@@ -17,11 +17,14 @@
   --mainTextColor: rgb(40, 179, 40);
   --mainTextHover: rgb(106, 241, 106);
   --mainTextAfter: rgb(199, 175, 179);
+
+  font-family: "Courier New", Courier, "Lucida Console", Monaco, "Andale Mono",
+    "DejaVu Sans Mono", "Liberation Mono", Menlo, Consolas, monospace;
 }
 
 html,
 body {
-  height: 100vh;
+  height: 100%;
 }
 body {
   background: var(--backgroundGradient);
@@ -39,6 +42,19 @@ body {
   flex-direction: column;
   border-radius: 0.6rem;
   font-size: 1.5rem;
+  box-shadow: 1px 1px 8px -1px rgba(0, 0, 0, 0.75);
+}
+.big-window {
+  background-color: var(--mainWindowBg);
+  color: var(--mainTextColor);
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.6rem;
+  font-size: 1.5rem;
+  box-shadow: 1px 1px 8px -1px rgba(0, 0, 0, 0.75);
+  overflow: auto;
 }
 
 .window-top {
@@ -52,30 +68,63 @@ body {
 }
 
 .red-circle {
-  padding: 0.4rem;
+  padding: 0.3rem;
   background-color: rgb(221, 78, 78);
   border-radius: 1rem;
+  border: 2px solid rgb(172, 78, 78);
 }
 .yellow-circle {
-  padding: 0.4rem;
+  padding: 0.3rem;
   background-color: rgb(248, 248, 139);
   border-radius: 1rem;
+  border: 2px solid rgb(248, 248, 89);
 }
 .green-circle {
-  padding: 0.4rem;
+  padding: 0.3rem;
   background-color: rgb(105, 206, 105);
   border-radius: 1rem;
+  border: 2px solid rgb(105, 206, 62);
 }
 
-form {
+.error-msg {
+  padding: 1rem 2rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+}
+.login-form span {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.create-message-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem 2rem;
+  border: none;
+  background-color: whitesmoke;
+  border-radius: 0.6rem;
+}
+
+.sign-up-form,
+.members-join-form {
   display: flex;
   flex-direction: column;
   padding: 1rem 2rem;
 }
 
-form span {
-  display: flex;
-  gap: 0.2rem;
+#messageDialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 0.6rem;
+  width: 60%;
 }
 
 input[type="text"],
@@ -87,10 +136,110 @@ input[type="password"] {
   color: var(--mainTextColor);
 }
 
-.entry-links {
+input[type="text"]:focus-visible,
+input[type="password"]:focus-visible {
+  outline: 1px solid rgb(80, 80, 80);
+  background-color: rgb(80, 80, 80);
+}
+
+input[type="text"]#messageTitle,
+textarea#messageContent {
+  border: 1px solid #ccc;
+  background-color: white;
+  font-size: 1rem;
+  color: black;
+  padding: 0.5rem;
+}
+
+input[type="text"]#messageTitle:focus-visible,
+textarea#messageContent:focus-visible {
+  outline: 1px solid #007bff;
+  background-color: white;
+}
+
+textarea#messageContent {
+  resize: vertical;
+}
+
+.entry-links,
+.homepage-links,
+.members-join-links {
   display: flex;
   justify-content: space-between;
   padding: 1rem 2rem;
+}
+
+.message {
+  padding: 1rem 2rem;
+  border-bottom: 1px dashed darkgreen;
+}
+
+.message-header {
+  display: flex;
+}
+.message-title {
+  font-size: 1.4rem;
+  padding-right: 1rem;
+}
+.message p {
+  font-size: 1rem;
+  padding: 1rem 2rem;
+}
+
+.member-details {
+  font-size: 1rem;
+  padding-left: 1rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.log-in-button {
+  padding-top: 2rem;
+}
+.create-message-button {
+  padding: 1rem 2rem;
+}
+
+button {
+  background-color: var(--mainTextColor);
+  font-size: 1rem;
+  padding: 0.2rem 0.8rem;
+  border-radius: 0.4rem;
+  border: 1px solid var(--mainTextColor);
+  transition: transform 0.1s ease;
+}
+
+.delete-form button {
+  padding: 0rem;
+  border-radius: 2rem;
+  border: 1px solid rgb(223, 76, 76);
+  background-color: rgb(223, 76, 76);
+}
+
+.delete-form svg {
+  display: block;
+  fill: white;
+  width: 1rem;
+}
+
+.members-join-button {
+  padding: 1rem 0rem;
+}
+
+button:hover {
+  background-color: var(--mainTextHover);
+  border: 1px solid var(--mainTextColor);
+}
+
+.delete-form button:hover {
+  background-color: rgb(211, 108, 108);
+  border: 1px solid rgb(223, 76, 76);
+}
+
+button:active {
+  transform: translate(2px, 2px);
 }
 
 a {
@@ -109,8 +258,18 @@ a:hover {
   font-size: 2rem;
 }
 
+.already-member-msg {
+  padding: 1rem 2rem;
+}
+
 .error-msg {
   color: red;
+}
+
+.sign-up-form li,
+.members-join-error {
+  font-size: 1rem;
+  padding: 0.2rem 2rem;
 }
 
 #messageDialog {

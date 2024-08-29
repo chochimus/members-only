@@ -2,15 +2,31 @@
 <ul>
   <% messages.forEach(message => { %>
   <li>
-    <div>
-      <span><%= unescapeHTML(message.title) %></span>
-      <% if(locals.user.membership_statusid == 2) { %>
-      <form action="/<%= message.messageid %>/delete" method="POST">
-        <button type="submit">Delete Message</button>
-      </form>
-      <% } %>
+    <div class="message">
+      <span class="message-header">
+        <span class="message-title"><%= unescapeHTML(message.title) %></span>
+        <% if(locals.user.membership_statusid == 2) { %>
+        <form
+          class="delete-form"
+          action="/<%= message.messageid %>/delete"
+          method="POST"
+        >
+          <button type="submit">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 -960 960 960"
+              fill="black"
+            >
+              <path
+                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+              />
+            </svg>
+          </button>
+        </form>
+        <% } %>
+      </span>
       <p><%= unescapeHTML(message.text) %></p>
-      <div>
+      <div class="member-details">
         <% if(locals.user.membership_statusid > 0) { %>
         <span><%=message.author%></span>
         <span><%=message.timeAgo%></span>

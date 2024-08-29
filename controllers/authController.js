@@ -17,7 +17,7 @@ const signupValidate = [
     .isLength({ max: 20 })
     .withMessage("Username must be no more than 20 characters long")
     .matches(/^[a-zA-Z0-9_]+$/)
-    .withMessage("Must only contain letters, numbers, or underscores")
+    .withMessage("Username must only contain letters, numbers, or underscores")
     .escape(),
   body("password")
     .notEmpty()
