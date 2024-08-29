@@ -7,25 +7,39 @@
     <title></title>
   </head>
   <body>
-    <h1>Log in</h1>
-    <form action="/log-in" method="POST">
-      <% if (locals.errors) { %> <% errors.forEach(error => { %> <% if
-      (error.path === 'username') { %> <%= error.msg %> <% } %> <% }); %> <% }
-      %>
-      <label>
-        Username:
-        <input
-          id="username"
-          name="username"
-          placeholder="username"
-          type="text"
-        />
-      </label>
-      <label>
-        Password:
-        <input id="password" name="password" type="password" />
-      </label>
-      <button>Log in</button>
-    </form>
+    <div class="window">
+      <%- include("partials/windowtop") %>
+      <div class="window-content">
+        <% if (locals.errors) { %>
+        <span class="error-msg"><%= errors.error %></span> <% } %>
+        <div class="login-form">
+          <form action="/log-in" method="POST">
+            <label for="username">Username</label>
+            <span>
+              >>
+              <input
+                id="username"
+                name="username"
+                placeholder="username"
+                type="text"
+            /></span>
+            <label for="password">Password</label>
+            <span>
+              >>
+              <input
+                id="password"
+                name="password"
+                placeholder="password"
+                type="password"
+              />
+            </span>
+            <span>
+              >>
+              <button>Log in</button>
+            </span>
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

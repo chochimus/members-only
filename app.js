@@ -10,6 +10,7 @@ const pool = require("./db/pool");
 const authRouter = require("./routes/authRoutes");
 const pgSession = require("connect-pg-simple")(session);
 const unescapeHTML = require("./utils/unescape");
+const flash = require("connect-flash");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -27,6 +28,7 @@ app.use(
     saveUninitialized: false,
   })
 );
+app.use(flash());
 
 app.use(passport.session());
 require("./config/passport");

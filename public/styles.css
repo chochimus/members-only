@@ -16,7 +16,7 @@
   --mainWindowTop: rgb(184, 184, 184);
   --mainTextColor: rgb(40, 179, 40);
   --mainTextHover: rgb(106, 241, 106);
-  --mainTextAfter: ;
+  --mainTextAfter: rgb(199, 175, 179);
 }
 
 html,
@@ -32,12 +32,13 @@ body {
 
 .window {
   background-color: var(--mainWindowBg);
-  width: 20rem;
-  height: 20rem;
+  color: var(--mainTextColor);
+  width: 22rem;
+  height: 22rem;
   display: flex;
   flex-direction: column;
   border-radius: 0.6rem;
-  justify-content: space-between;
+  font-size: 1.5rem;
 }
 
 .window-top {
@@ -45,6 +46,45 @@ body {
   height: 1.4rem;
   display: flex;
   border-radius: 0.6rem 0.6rem 0rem 0rem;
+  padding-left: 1rem;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.red-circle {
+  padding: 0.4rem;
+  background-color: rgb(221, 78, 78);
+  border-radius: 1rem;
+}
+.yellow-circle {
+  padding: 0.4rem;
+  background-color: rgb(248, 248, 139);
+  border-radius: 1rem;
+}
+.green-circle {
+  padding: 0.4rem;
+  background-color: rgb(105, 206, 105);
+  border-radius: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+}
+
+form span {
+  display: flex;
+  gap: 0.2rem;
+}
+
+input[type="text"],
+input[type="password"] {
+  border: none;
+  border-bottom: 2px solid var(--mainTextColor);
+  background-color: var(--mainWindowBg);
+  font-size: 1rem;
+  color: var(--mainTextColor);
 }
 
 .entry-links {
@@ -54,16 +94,23 @@ body {
 }
 
 a {
+  color: var(--mainTextColor);
   text-decoration: none;
 }
 
 a:hover {
   color: var(--mainTextHover);
+  text-decoration: underline;
 }
 
-.entry-links a {
-  color: var(--mainTextColor);
+.entry-links {
+  display: flex;
+  flex-direction: column;
   font-size: 2rem;
+}
+
+.error-msg {
+  color: red;
 }
 
 #messageDialog {

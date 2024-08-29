@@ -77,12 +77,15 @@ const signupPost = [
 ];
 
 const loginGet = (req, res) => {
-  res.render("log-in");
+  res.render("log-in", {
+    errors: req.flash(),
+  });
 };
 
 const loginPost = passport.authenticate("local", {
   failureRedirect: "/log-in",
   successRedirect: "/",
+  failureFlash: true,
 });
 
 const logoutGet = (req, res, next) => {
